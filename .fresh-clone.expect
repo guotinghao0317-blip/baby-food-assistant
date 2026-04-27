@@ -1,0 +1,66 @@
+#!/usr/bin/expect
+
+set timeout 300
+set password "@qie8023"
+set server_ip "170.106.110.237"
+set username "ubuntu"
+
+spawn ssh $username@$server_ip
+
+expect {
+    "*(yes/no)?*" {
+        send "yes\r"
+        expect "*password:"
+        send "$password\r"
+    }
+    "*password:" {
+        send "$password\r"
+    }
+}
+
+expect "$username@"
+
+# Remove everything and clone again from correct URL
+send "sudo rm -rf ~/baby-food-assistant && echo 'Removed old directory' && git clone https://github.com/guotinghao0317-blip/baby-food-assistant.git baby-food-assistant\r"
+
+set timeout 300
+expect "$username@"
+
+send "cd ~/baby-food-assistant && pwd && ls -la\r"
+expect "$username@"
+
+# Check if deploy file exists
+send "ls -la | grep deploy-production\r"
+expect "$username@"
+
+send "export OPENAI_API_KEY=c27412f1-239d-453f-a0b9-5e5bd296b027\r"
+expect "$username@"
+send "export SECRET_KEY=58122a33830a7540724586ca76836f1590762c5711d65b5aff7e3df4fd7d8159\r"
+expect "$username@"
+send "export POSTGRES_USER=babyfood\r"
+expect "$username@"
+send "export POSTGRES_PASSWORD=babyfood123\r"
+expect "$username@"
+send "export POSTGRES_DB=babyfood_db\r"
+expect "$username@"
+send "export ENVIRONMENT=production\r"
+expect "$username@"
+send "export NEXT_PUBLIC_API_URL=http://170.106.110.237:8000\r"
+expect "$username@"
+
+send "docker-compose -f deploy-production.yml up -d --build\r"
+
+set timeout 900
+expect "$username@"
+
+send "docker-compose -f deploy-production.yml ps\r"
+expect "$username@"
+
+send "sleep 30 && echo 'Health check:' && curl -s http://localhost:8000/health\r"
+expect "$username@"
+
+send "echo 'Frontend check:' && curl -s -I http://localhost:3000\r"
+expect "$username@"
+
+send "exit\r"
+interact

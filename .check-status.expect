@@ -1,0 +1,39 @@
+#!/usr/bin/expect
+
+set timeout 60
+set password "@qie8023"
+set server_ip "170.106.110.237"
+set username "ubuntu"
+
+spawn ssh $username@$server_ip
+
+expect {
+    "*(yes/no)?*" {
+        send "yes\r"
+        expect "*password:"
+        send "$password\r"
+    }
+    "*password:" {
+        send "$password\r"
+    }
+}
+
+expect "$username@"
+
+send "cd ~/baby-food-assistant\r"
+expect "$username@"
+
+send "docker-compose -f deploy-production.yml ps\r"
+expect "$username@"
+
+send "echo --- Health check --- && curl -s http://localhost:8000/health\r"
+expect "$username@"
+
+send "echo --- Frontend check --- && curl -s http://localhost:3000 | head -20\r"
+expect "$username@"
+
+send "docker stats --no-stream\r"
+expect "$username@"
+
+send "exit\r"
+interact

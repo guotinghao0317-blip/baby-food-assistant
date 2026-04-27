@@ -1,0 +1,62 @@
+# Dependencies
+node_modules/
+*/node_modules
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-*
+*~
+
+# Environment
+.env
+.env.local
+.env.*
+.venv
+venv/
+ENV/
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+*.pyd
+*$py.class
+.tmp_pydeps/
+.vendor/
+
+# OS
+.DS_Store
+.DS_Store?
+Thumbs.db
+
+# Build
+.next/
+out/
+build/
+dist/
+
+# Database
+*.db
+*.sqlite
+sqlite/
+
+# Uploads
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# Certificates (don't track in git)
+nginx/certbot/conf/live/
+nginx/certbot/conf/archive/

@@ -1,0 +1,22 @@
+#!/usr/bin/expect
+
+set timeout 60
+set password "@qie8023"
+set server_ip "170.106.110.237"
+set username "ubuntu"
+
+# First copy the deploy-production.yml to remote
+spawn scp /Users/jiayindeng/宝宝辅食项目/deploy-production.yml $username@$server_ip:/home/ubuntu/baby-food-assistant/
+
+expect {
+    "*(yes/no)?*" {
+        send "yes\r"
+        expect "*password:"
+        send "$password\r"
+    }
+    "*password:" {
+        send "$password\r"
+    }
+}
+
+expect eof

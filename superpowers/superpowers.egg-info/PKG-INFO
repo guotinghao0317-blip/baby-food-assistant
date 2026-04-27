@@ -1,0 +1,69 @@
+Metadata-Version: 2.1
+Name: superpowers
+Version: 1.0.0
+Summary: An agentic skills framework & software development methodology
+Home-page: https://github.com/obra/superpowers
+Author: obra
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Provides-Extra: dev
+
+# Superpowers
+
+> An agentic skills framework & software development methodology that works.
+
+Superpowers 是一个用于构建AI智能代理的技能框架，它提供了：
+
+- **结构化技能定义**：统一接口定义AI可执行的技能
+- **自动技能发现**：动态发现和加载可用技能
+- **技能组合**：将多个技能组合成更复杂的能力
+- **开发方法论**：AI辅助协作开发的工作流程
+
+## 框架结构
+
+```
+superpowers/
+├── core/              # 核心框架
+│   ├── __init__.py
+│   ├── skill.py       # 技能基类定义
+│   ├── registry.py    # 技能注册表
+│   └── executor.py    # 技能执行器
+├── skills/            # 内置技能集合
+├── examples/          # 使用示例
+└── docs/              # 文档
+```
+
+## 快速开始
+
+```python
+from superpowers.core import SkillRegistry, SkillExecutor
+
+# 注册技能
+registry = SkillRegistry()
+registry.discover_skills("skills/")
+
+# 执行技能
+executor = SkillExecutor(registry)
+result = executor.execute("skill_name", parameters)
+```
+
+## 方法论
+
+Superpowers 开发方法论核心原则：
+
+1. **技能化分解**：将开发任务分解为可复用的技能单元
+2. **增量式构建**：逐步积累技能，能力随时间增长
+3. **人机协作**：AI执行技能，人类指导方向
+4. **可观测性**：每个技能执行都有清晰的输入输出
+
+

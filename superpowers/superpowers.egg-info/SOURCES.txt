@@ -1,0 +1,11 @@
+README.md
+setup.py
+core/__init__.py
+core/executor.py
+core/registry.py
+core/skill.py
+superpowers.egg-info/PKG-INFO
+superpowers.egg-info/SOURCES.txt
+superpowers.egg-info/dependency_links.txt
+superpowers.egg-info/requires.txt
+superpowers.egg-info/top_level.txt
